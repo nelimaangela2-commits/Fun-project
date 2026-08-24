@@ -1,3 +1,9 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     background-color: #FAF8F2;
 }
@@ -96,3 +102,103 @@ p{
     cursor: pointer;
 }
 
+.carousel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 900px;
+  height: 380px;
+}
+
+.carousel-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* clip cards that sit fully offscreen */
+}
+
+.carousel-track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* ---------- Cards ---------- */
+.carousel-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  height: 380px;
+  border-radius: 24px;
+  overflow: hidden;
+  background: #ddd;
+  box-shadow: 0 20px 40px rgba(60, 40, 20, 0.18);
+  transition:
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.5s ease,
+    filter 0.5s ease,
+    z-index 0s 0.25s;
+}
+
+.carousel-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Position variants — toggled via data-pos, set by script.js */
+.carousel-card[data-pos="center"] {
+  transform: translate(-50%, -50%) scale(1);
+  z-index: 3;
+  opacity: 1;
+  filter: brightness(1);
+}
+.carousel-card[data-pos="left"] {
+  transform: translate(-125%, -50%) scale(0.82);
+  z-index: 2;
+  opacity: 0.55;
+  filter: brightness(0.85);
+}
+.carousel-card[data-pos="right"] {
+  transform: translate(25%, -50%) scale(0.82);
+  z-index: 2;
+  opacity: 0.55;
+  filter: brightness(0.85);
+}
+.carousel-card[data-pos="hidden"] {
+  transform: translate(-50%, -50%) scale(0.7);
+  z-index: 1;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ---------- Nav arrows ---------- */
+.carousel-btn {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 4px 12px rgba(60, 40, 20, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 4;
+  font-size: 16px;
+  color: #2b1c10;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+.carousel-btn:hover {
+  background: #fff;
+}
+.carousel-btn:active {
+  transform: scale(0.92);
+}
+.carousel-btn.prev { margin-right: -20px; }
+.carousel-btn.next { margin-left: -20px; }

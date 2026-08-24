@@ -1,25 +1,39 @@
-const track = document.getElementById("carouselTrack");
-const nextBtn = document.getElementById("nextBtn");
-const prevBtn = document.getElementById("prevBtn");
+// ---------- DOM refs ----------
+const track = document.getElementById('carouselTrack');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+const cards = Array.from(track.querySelectorAll('.carousel-card'));
 
-let currentSlide = 0;
+// ---------- State ----------
+let activeIndex = 0; // starts on the first card (cappuccino)
 
-nextBtn.addEventListener("click", () => {
-    currentSlide++;
+// ---------- Render ----------
+function render() {
+  const total = cards.length;
 
-    if (currentSlide >= track.children.length) {
-        currentSlide = 0;
-    }
+  cards.forEach((card, i) => {
+    // How far this card sits from the active one, wrapping around the ends
+    const diff = (i - activeIndex + total) % total;
 
-    track.style.transform = `translateX(-${currentSlide * 100}%)`;
+    let pos = 'hidden';
+    if (diff === 0) pos = 'center';
+    else if (diff === 1) pos = 'right';
+    else if (diff === total - 1) pos = 'left';
+
+    card.dataset.pos = pos;
+  });
+}
+
+// ---------- Events ----------
+prevBtn.addEventListener('click', () => {
+  activeIndex = (activeIndex - 1 + cards.length) % cards.length;
+  render();
 });
 
-prevBtn.addEventListener("click", () => {
-    currentSlide--;
-
-    if (currentSlide < 0) {
-        currentSlide = track.children.length - 1;
-    }
-
-    track.style.transform = `translateX(-${currentSlide * 100}%)`;
+nextBtn.addEventListener('click', () => {
+  activeIndex = (activeIndex + 1) % cards.length;
+  render();
 });
+
+// ---------- Init ----------
+render();
