@@ -68,3 +68,8 @@ body {
 .rating-badge small {
     color: #8A7568;
 }
+
+h1{
+    font-size: 50px;
+    text-align: center;
+}
