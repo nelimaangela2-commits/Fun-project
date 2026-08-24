@@ -77,3 +77,21 @@ p{
     font-size: 20px;
     text-align: center;
 }
+
+.button-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.exploreBtn{
+    background-color: #000000;
+    border-radius: 30px;
+    color: white;
+    padding: 15px;
+}
+
+.exploreBtn:hover {
+    background-color: #8A7568;
+    cursor: pointer;
+}
