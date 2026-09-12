@@ -113,6 +113,7 @@ p{
   width: 100%;
   max-width: 900px;
   height: 380px;
+  margin: 0 auto;
 }
 
 .carousel-container {
