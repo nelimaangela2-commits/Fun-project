@@ -208,3 +208,8 @@ p{
 }
 .carousel-btn.prev { margin-right: -20px; }
 .carousel-btn.next { margin-left: -20px; }
+
+footer {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
